@@ -6,7 +6,7 @@ stages:
 variables:
   PUBLIC_REGISTRY_HOST: docker.io
   PUBLIC_REGISTRY_OWNER: cybertmt
-  PUBLIC_REGISTRY_APP_NAME: 39_go_CI
+  PUBLIC_REGISTRY_APP_NAME: 39_go_ci
 
 build_app:
   stage: build
@@ -18,7 +18,8 @@ test:
   stage: test
   image: golang:1.15
   script:
-    - echo "No tests!"
+    - go test -v ./...
+    - echo "Tests finished"
 
 lint:
   stage: test
@@ -36,6 +37,9 @@ build_image:stable:
     - docker:dind
   script:
     - echo "No build image commands!!!${PUBLIC_REGISTRY_PASSOWRD}"
+    - docker login -u ${PUBLIC_REGISTRY_OWNER} -p ${PUBLIC_REGISTRY_PASSOWRD} ${PUBLIC_REGISTRY_HOST}
+    - docker build -t "${PUBLIC_REGISTRY_APP_NAME}" .
+    - docker push cybertmt/${PUBLIC_REGISTRY_APP_NAME}:${CI_COMMIT_REF_NAME}
   only:
     - master
 
@@ -46,4 +50,7 @@ build_image:latest:
     - docker:dind
   script:
     - echo "No build image commands!!!"
+    - docker login -u ${PUBLIC_REGISTRY_OWNER} -p ${PUBLIC_REGISTRY_PASSOWRD} ${PUBLIC_REGISTRY_HOST}
+    - docker build -t "${PUBLIC_REGISTRY_APP_NAME}" .
+    - docker push cybertmt/${PUBLIC_REGISTRY_APP_NAME}:latest
   when: manual
