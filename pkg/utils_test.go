@@ -21,7 +21,7 @@ func Test_someHelperFunction(t *testing.T) {
 		},
 		{
 			name: "basic test 2",
-			args: args{s: "a,b;c"},
+			args: args{s: "a,bc"},
 			want: []string{"a", "bc"},
 		},
 		{
