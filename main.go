@@ -21,7 +21,7 @@ func main() {
 		w.Header().Set("Content-Type", "text/plain")
 		fmt.Fprintf(w, "Service: 39_go_CI\nStatus: OK\n")
 	})
-	// Starting server
+	// Starting server to listen <port>
 	s := http.Server{Addr: "0.0.0.0:8080", Handler: mux}
 	log.Fatal(s.ListenAndServe())
 }
