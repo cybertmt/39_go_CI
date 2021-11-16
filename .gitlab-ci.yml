@@ -38,7 +38,7 @@ build_image:stable:
   script:
     - echo "No build image commands!!!${PUBLIC_REGISTRY_PASSOWRD}"
     - docker login -u ${PUBLIC_REGISTRY_OWNER} -p ${PUBLIC_REGISTRY_PASSOWRD} ${PUBLIC_REGISTRY_HOST}
-    - docker build -t "${PUBLIC_REGISTRY_APP_NAME}" .
+    - docker build -t ${PUBLIC_REGISTRY_OWNER}/${PUBLIC_REGISTRY_APP_NAME}:${CI_COMMIT_REF_NAME} .
     - docker push cybertmt/${PUBLIC_REGISTRY_APP_NAME}:${CI_COMMIT_REF_NAME}
   only:
     - master
@@ -51,6 +51,6 @@ build_image:latest:
   script:
     - echo "No build image commands!!!"
     - docker login -u ${PUBLIC_REGISTRY_OWNER} -p ${PUBLIC_REGISTRY_PASSOWRD} ${PUBLIC_REGISTRY_HOST}
-    - docker build -t "${PUBLIC_REGISTRY_APP_NAME}" .
-    - docker push cybertmt/${PUBLIC_REGISTRY_APP_NAME}:latest
+    - docker build -t ${PUBLIC_REGISTRY_OWNER}/${PUBLIC_REGISTRY_APP_NAME}:latest .
+    - docker push ${PUBLIC_REGISTRY_OWNER}/${PUBLIC_REGISTRY_APP_NAME}:latest
   when: manual
