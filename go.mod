@@ -1,4 +1,4 @@
-module skillbox/golang/module-39
+module 39_go_CI
 
 go 1.15
 

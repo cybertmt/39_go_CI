@@ -6,7 +6,7 @@ stages:
 variables:
   PUBLIC_REGISTRY_HOST: docker.io
   PUBLIC_REGISTRY_OWNER: cybertmt
-  PUBLIC_REGISTRY_APP_NAME: module-39
+  PUBLIC_REGISTRY_APP_NAME: 39_go_CI
 
 build_app:
   stage: build

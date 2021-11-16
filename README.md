@@ -1,4 +1,4 @@
-# go-39-metoddostavkipril
+# 39_go_CI
 
 ### Pre-requirements
 
